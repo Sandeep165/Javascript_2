@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+</head>
+<style>
+    body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato";
+}
+
+#time1 {
+  height: 250px;
+  width: 50%;
+  background-color: rgba(0, 255, 179, 0.856);
+  display: flex;
+  font-size: 60px;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid rgba(0, 255, 213, 0.712);
+}
+.format {
+  justify-content: center;
+  display: flex;
+}
+#time2 {
+  height: 250px;
+  width: 50%;
+  background-color: rgba(0, 255, 157, 0.918);
+  display: flex;
+  font-size: 60px;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid rgba(0, 255, 128, 0.788);
+}
+.row {
+  display: flex;
+}
+
+
+button {
+  float: left;
+}
+#button1 {
+
+  width: 300px;
+  height: 40px;
+  
+}
+#button1:hover{
+    background-color: rgba(0, 255, 179, 0.856);
+}
+#button2:hover{
+    background-color: rgba(0, 255, 179, 0.856);
+}
+#button2 {
+  width: 300px;
+  height: 40px;
+}
+
+</style>
+<body>
+    <div class="row">
+        <div id="time1"> </div>
+        <div id="time2"> </div>
+    </div>
+    <div class = "format">
+        <button id="button1">12Hrs</button>
+        <button id="button2">24Hrs</button>
+    </div>
+    <script>
+        var btn_1 = document.getElementById("button1")
+var btn_2 = document.getElementById("button2")
+btn_1.addEventListener("click", function DIGITAL_CLOCK() {
+    let data = new Date();
+    let hours = data.getHours();
+    let minutes = data.getMinutes();
+    let seconds = data.getSeconds();
+    let period = "AM";
+    if (hours > 12) {
+        hours = hours - 12;
+        period = "PM";
+    }
+    hours = hours < 10 ? `0${hours}` : hours;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    let result = `${hours}:${minutes}:${seconds} ${period}`;
+    
+    document.getElementById("time1").innerText = result;
+    document.getElementById("time2").innerText = " ";
+    setInterval(DIGITAL_CLOCK, 1000);
+});
+
+btn_2.addEventListener("click", function digital_clock() {
+    let data = new Date();
+    let hours = data.getHours();
+    let minutes = data.getMinutes();
+    let seconds = data.getSeconds();
+    let period = "AM";
+    if (hours == 0) hours = 12;
+
+    if (hours > 12) {
+
+        period = "PM";
+    }
+
+    hours = hours < 10 ? `0${hours}` : hours;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    let result = `${hours}:${minutes}:${seconds} ${period} `;
+    
+    document.getElementById("time2").innerText = result;
+    document.getElementById("time1").innerText = " ";
+    setInterval(digital_clock, 1000);
+  
+});
+
+
+
+    </script>
+</body>
